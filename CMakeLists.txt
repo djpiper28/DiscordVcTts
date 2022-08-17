@@ -44,6 +44,11 @@ string(LENGTH "${CMAKE_SOURCE_DIR}/" SOURCE_PATH_SIZE)
 add_definitions("-DSOURCE_PATH_SIZE=${SOURCE_PATH_SIZE}")
 add_definitions("-D__FILENAME__=(__FILE__ + SOURCE_PATH_SIZE)")
 
+# Compiler settings compiler flags
+set(COMPILER_FLAGS "-Wall -Wextra -Wpedantic")
+set(CMAKE_C_FLAGS_DEBUG "-g -O0 ${COMPILER_FLAGS} -DDEBUG")
+set(CMAKE_C_FLAGS_RELEASE "-Ofast ${COMPILER_FLAGS}")
+
 # Dectalk
 add_custom_command(
   OUTPUT ${CMAKE_BINARY_DIR}/dectalk
