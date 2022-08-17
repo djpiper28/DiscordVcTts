@@ -15,9 +15,19 @@ static void on_ready(struct discord *client)
 
 static void on_message(struct discord *client, const struct discord_message *msg)
 {
-    if (MSG_EQ("!help") || MSG_EQ("?help") || MSG_EQ(".help")) {
+    if (msg->author->bot) {
+        return;
+    }
+
+    if (MSG_EQ("tts-help")) {
         discord_async_next(client, NULL);
-        struct discord_create_message_params params = { .content = "Jim'll fix it" };
+        struct discord_create_message_params params = {
+            .content = "Jim'll fix it!\n"
+            "```md\n"
+            " - tts, will make me join vc and, speak every message in your tc to vc.\n"
+            " - tts-leave, willl make me leave vc and, stop chatting shit.\n"
+            "```\n"
+        };
         discord_create_message(client, msg->channel_id, &params, NULL);
     }
 }

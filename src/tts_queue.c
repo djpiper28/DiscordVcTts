@@ -2,9 +2,9 @@
 #include "./utils.h"
 #include <stdlib.h>
 
-void init_guild_tts_queue(guild_tts_queue_t *queue, long guild_id)
+void init_guild_tts_queue(guild_tts_queue_t *queue, long guild_id, long channel_id)
 {
-    guild_tts_queue_t tmp_queue = {guild_id, PTHREAD_MUTEX_INITIALIZER, -1, 0};
+    guild_tts_queue_t tmp_queue = {guild_id, channel_id, PTHREAD_MUTEX_INITIALIZER, -1, 0};
     *queue = tmp_queue;
 }
 
@@ -24,7 +24,6 @@ int init_discord_msg_t(discord_msg_t *msg, const struct discord_message *d_msg)
     msg->message = message;
     msg->sender_id = d_msg->author->id;
     msg->message_id = d_msg->id;
-    msg->channel_id = d_msg->channel_id;
     return 1;
 }
 

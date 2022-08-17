@@ -8,17 +8,17 @@ typedef struct discord_msg_t {
     char *message;
     long sender_id;
     long message_id;
-    long channel_id;
 } discord_msg_t;
 
 typedef struct guild_tts_queue_t {
     long guild_id;
+    long channel_id;
     pthread_mutex_t lock;
     int front_ptr, back_ptr;
     discord_msg_t queue[QUEUE_SIZE];
 } guild_tts_queue_t;
 
-void init_guild_tts_queue(guild_tts_queue_t *queue, long guild_id);
+void init_guild_tts_queue(guild_tts_queue_t *queue, long guild_id, long channel_id);
 void free_guild_tts_queue(guild_tts_queue_t *queue);
 
 int init_discord_msg_t(discord_msg_t *msg, const struct discord_message *d_msg);

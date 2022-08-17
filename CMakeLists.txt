@@ -70,6 +70,8 @@ set(MAIN_FILES
     ./src/utils.h
     ./src/tts_queue.c
     ./src/tts_queue.h
+    ./src/bot.c
+    ./src/bot.h
     ./testing.h/logger.c
     ./testing.h/logger.h
     ./testing.h/ansi_colour.h)
