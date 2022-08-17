@@ -2,9 +2,9 @@
 #include "./utils.h"
 #include <stdlib.h>
 
-void init_guild_tts_queue(guild_tts_queue_t *queue, long guild_id, long channel_id)
+void init_guild_tts_queue(guild_tts_queue_t *queue, long guild_id, long channel_id, long vc_id)
 {
-    guild_tts_queue_t tmp_queue = {guild_id, channel_id, PTHREAD_MUTEX_INITIALIZER, -1, 0};
+    guild_tts_queue_t tmp_queue = {guild_id, channel_id, vc_id, PTHREAD_MUTEX_INITIALIZER, -1, 0};
     *queue = tmp_queue;
 }
 
