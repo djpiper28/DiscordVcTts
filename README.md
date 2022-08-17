@@ -17,9 +17,7 @@ cd DiscordVcTts
 ### Step 0
 Install orca
 ```bash
-# Idk man, stores your id in the exec, dont @ me bruv
-export TOKEN=#your token
-cd orca-sm # dont ask
+cd orca-sm
 cp -f ../config.json ./config.json
 make -j
 sudo make install
