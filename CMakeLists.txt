@@ -47,11 +47,24 @@ add_definitions("-D__FILENAME__=(__FILE__ + SOURCE_PATH_SIZE)")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Non-ui files that are tested
-set(MAIN_FILES ./testing.h/logger.c ./testing.h/logger.h
-               ./testing.h/ansi_colour.h)
+set(MAIN_FILES
+    ./src/utils.c
+    ./src/utils.h
+    ./src/tts_queue.c
+    ./src/tts_queue.h
+    ./testing.h/logger.c
+    ./testing.h/logger.h
+    ./testing.h/ansi_colour.h)
 
-set(TEST_FILES ./testing.h/logger.c ./testing.h/logger.h ./testing.h/testing.c
-               ./testing.h/testing.h ./testing.h/ansi_colour.h)
+set(TEST_FILES
+    ${MAIN_FILES}
+    ./tests/test_utils.c
+    ./tests/test_utils.h
+    ./testing.h/logger.c
+    ./testing.h/logger.h
+    ./testing.h/testing.c
+    ./testing.h/testing.h
+    ./testing.h/ansi_colour.h)
 
 set(LIBERALS pthread curl discord jansson)
 
