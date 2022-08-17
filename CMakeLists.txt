@@ -56,8 +56,8 @@ add_custom_command(
   COMMAND ./configure
   COMMAND make -j
   COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/dectalk
-  COMMAND ${CMAKE_COMMAND} -E copy_directory 
-    ${CMAKE_SOURCE_DIR}/dectalk/dist 
+  COMMAND
+    ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/dectalk/dist
     ${CMAKE_BINARY_DIR}/dectalk || echo "This is fine, it is meant to do that"
   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/dectalk/src)
 add_custom_target(DEC_TALK DEPENDS ${CMAKE_BINARY_DIR}/dectalk)

@@ -1,7 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <orca/discord.h>
 #include <string.h>
+#include <orca/discord.h>
+#include "./tts_queue.h"
 #include "../testing.h/logger.h"
 
 static void on_ready(struct discord *client)
