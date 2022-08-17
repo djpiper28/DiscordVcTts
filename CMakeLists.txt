@@ -47,28 +47,23 @@ add_definitions("-D__FILENAME__=(__FILE__ + SOURCE_PATH_SIZE)")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Non-ui files that are tested
-set(MAIN_FILES
-    ./testing.h/logger.c
-    ./testing.h/logger.h
-    ./testing.h/ansi_colour.h)
+set(MAIN_FILES ./testing.h/logger.c ./testing.h/logger.h
+               ./testing.h/ansi_colour.h)
 
-set(TEST_FILES
-    ./testing.h/logger.c
-    ./testing.h/logger.h
-    ./testing.h/testing.c
-    ./testing.h/testing.h
-    ./testing.h/ansi_colour.h)
+set(TEST_FILES ./testing.h/logger.c ./testing.h/logger.h ./testing.h/testing.c
+               ./testing.h/testing.h ./testing.h/ansi_colour.h)
+
+set(LIBERALS pthread curl discord jansson)
 
 add_executable(DiscordVcTts ${MAIN_FILES} ./src/main.c)
-target_link_libraries(DiscordVcTts jansson)
+target_link_libraries(DiscordVcTts ${LIBERALS})
 
 add_executable(DiscordVcTtsTests ${TEST_FILES} ./tests/main.c)
-target_link_libraries(DiscordVcTtsTests jansson)
-  
+target_link_libraries(DiscordVcTtsTests ${LIBERALS})
+
 file(COPY mem_tests.sh DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY mem_tests.py DESTINATION ${CMAKE_BINARY_DIR})
 
 enable_testing()
 add_test(NAME main-tests COMMAND SquireDesktopTests)
 add_test(NAME memory-tests COMMAND bash mem_tests.sh)
-

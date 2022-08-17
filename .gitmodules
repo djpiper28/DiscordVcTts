@@ -4,6 +4,6 @@
 [submodule "testing.h"]
 	path = testing.h
 	url = https://github.com/djpiper28/testing.h
-[submodule "orca"]
-	path = orca
+[submodule "orca-sm"]
+	path = orca-sm
 	url = https://github.com/cee-studio/orca/
