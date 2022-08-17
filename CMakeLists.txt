@@ -44,6 +44,19 @@ string(LENGTH "${CMAKE_SOURCE_DIR}/" SOURCE_PATH_SIZE)
 add_definitions("-DSOURCE_PATH_SIZE=${SOURCE_PATH_SIZE}")
 add_definitions("-D__FILENAME__=(__FILE__ + SOURCE_PATH_SIZE)")
 
+# Dectalk
+add_custom_command(
+  OUTPUT ${CMAKE_BINARY_DIR}/dectalk
+  COMMAND autoreconf
+  COMMAND ./configure
+  COMMAND make -j
+  COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/dectalk
+  COMMAND ${CMAKE_COMMAND} -E copy_directory 
+    ${CMAKE_SOURCE_DIR}/dectalk/dist 
+    ${CMAKE_BINARY_DIR}/dectalk || echo "This is fine, it is meant to do that"
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/dectalk/src)
+add_custom_target(DEC_TALK DEPENDS ${CMAKE_BINARY_DIR}/dectalk)
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Non-ui files that are tested
@@ -69,9 +82,11 @@ set(TEST_FILES
 set(LIBERALS pthread curl discord jansson)
 
 add_executable(DiscordVcTts ${MAIN_FILES} ./src/main.c)
+add_dependencies(DiscordVcTts DEC_TALK)
 target_link_libraries(DiscordVcTts ${LIBERALS})
 
 add_executable(DiscordVcTtsTests ${TEST_FILES} ./tests/main.c)
+add_dependencies(DiscordVcTtsTests DEC_TALK)
 target_link_libraries(DiscordVcTtsTests ${LIBERALS})
 
 file(COPY mem_tests.sh DESTINATION ${CMAKE_BINARY_DIR})
